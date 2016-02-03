@@ -10,7 +10,6 @@ import br.com.prisma.domain.Clientes;
 public class ClienteDAOTest {
 
 	@Test
-	@Ignore
 	public void salvar() {
 
 		Clientes cliente = new Clientes();
@@ -30,6 +29,7 @@ public class ClienteDAOTest {
 	}
 
 	@Test
+	@Ignore
 	public void listar() {
 
 		ClienteDAO dao = new ClienteDAO();

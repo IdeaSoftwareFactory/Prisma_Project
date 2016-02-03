@@ -10,7 +10,6 @@ import br.com.prisma.domain.Usuario;
 
 public class UsuarioDAOTest {
 	@Test
-	@Ignore
 	public void salvar() {
 
 		Usuario user = new Usuario();

@@ -8,11 +8,12 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+
 @Entity
 @Table(name = "Clientes")
 @NamedQueries({
-	@NamedQuery(name = "Cliente.listar", query = "SELECT cliente FROM Clientes clientes"),
-	@NamedQuery(name = "Cliente.buscarCodigo", query = "SELECT cliente FROM Clientes clientes where clientes.codigo = :codigo") })
+		@NamedQuery(name = "Cliente.listar", query = "SELECT clientes FROM Clientes clientes"),
+		@NamedQuery(name = "Cliente.buscarCodigo", query = "SELECT clientes FROM Clientes clientes where clientes.codigo = :codigo") })
 public class Clientes {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -135,7 +136,5 @@ public class Clientes {
 				+ ", numero=" + numero + ", fone=" + fone + ", email=" + email
 				+ "]";
 	}
-	
-	
 
 }
