@@ -1,5 +1,8 @@
 package br.com.prisma.test;
 
+import java.util.List;
+
+import org.junit.Ignore;
 import org.junit.Test;
 
 import br.com.prisma.dao.AgenteDAO;
@@ -10,7 +13,8 @@ import br.com.prisma.domain.Servicos;
 public class AgentesDAOTest {
 
 	@Test
-	public void inserir() {
+	@Ignore
+	public void salvar() {
 		ServicosDAO serviceDAO = new ServicosDAO();
 		Servicos servicos = serviceDAO.BuscarPorCodigo(1L);
 
@@ -29,8 +33,49 @@ public class AgentesDAOTest {
 		agentes.setServicos(servicos);
 
 		AgenteDAO DAO = new AgenteDAO();
-		DAO.inserir(agentes);
+		DAO.salvar(agentes);
 
 	}
 
+	@Test
+	@Ignore
+	public void BuscarPorCodigo() {
+		AgenteDAO agentesDAO = new AgenteDAO();
+
+		Agentes agentes = agentesDAO.BuscarPorCodigo(1L);
+
+		System.out.println(agentes);
+	}
+
+	@Test
+	@Ignore
+	public void Listar() {
+		AgenteDAO agentesDAO = new AgenteDAO();
+		List<Agentes> agentes = agentesDAO.listar();
+		System.out.println(agentes);
+	}
+
+	@Test
+	@Ignore
+	public void excluir() {
+		AgenteDAO agentesDAO = new AgenteDAO();
+		Agentes agentes = agentesDAO.BuscarPorCodigo(1L);
+		agentesDAO.excluir(agentes);
+	}
+
+	@Test
+	public void editar() {
+		AgenteDAO agenteDAO = new AgenteDAO();
+		Agentes agentes = agenteDAO.BuscarPorCodigo(2L);
+
+		agentes.setNome("EditarTeste");
+		agentes.setCNPJ("22222111111");
+
+		ServicosDAO servicoDAO = new ServicosDAO();
+		Servicos servicos = servicoDAO.BuscarPorCodigo(1L);
+		agentes.setServicos(servicos);
+
+		agenteDAO.editar(agentes);
+
+	}
 }

@@ -8,10 +8,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "Agentes")
+@NamedQueries({
+	@NamedQuery(name = "Agentes.listar", query = "SELECT agentes FROM Agentes agentes"),
+	@NamedQuery(name = "Agentes.BuscarCodigo", query = "SELECT agentes FROM Agentes agentes WHERE codigo = :codigo")})	
+
 public class Agentes {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
