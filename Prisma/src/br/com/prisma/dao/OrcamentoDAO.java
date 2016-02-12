@@ -5,19 +5,21 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import br.com.prisma.domain.Clientes;
+import br.com.prisma.domain.Orcamento;
 import br.com.prisma.util.HibernateUtil;
 
-public class ClienteDAO {
+public class OrcamentoDAO {
 
-	public void salvar(Clientes clientes) {
-		// capturando uma sessão
+	public void salvar(Orcamento orcamento) {
+
 		Session sessao = HibernateUtil.getSessionFactory().openSession();
 		Transaction transacao = null;
+
 		try {
 			transacao = sessao.beginTransaction();
-			sessao.save(clientes);
+			sessao.save(orcamento);
 			transacao.commit();
+
 		} catch (RuntimeException ex) {
 			if (transacao != null) {
 				transacao.rollback();
@@ -30,44 +32,41 @@ public class ClienteDAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Clientes> Listar() {
+	public List<Orcamento> listar() {
+
 		Session sessao = HibernateUtil.getSessionFactory().openSession();
-		List<Clientes> cliente = null;
+		List<Orcamento> orcamentos = null;
 
 		try {
-			Query consulta = sessao.getNamedQuery("Cliente.listar");
-			cliente = consulta.list();
+			Query consulta = sessao.getNamedQuery("Orcamento.listar");
+			orcamentos = consulta.list();
 
 		} catch (RuntimeException ex) {
-
 			throw ex;
-
 		} finally {
 			sessao.close();
-
 		}
-
-		return cliente;
+		return orcamentos;
 
 	}
 
-	public Clientes BuscarPorCodigo(Long codigo) {
+	public Orcamento BuscarPorCodigo(Long codigo) {
 
 		Session sessao = HibernateUtil.getSessionFactory().openSession();
-		Clientes clientes = null;
+		Orcamento orcamento = null;
 
 		try {
-			Query consulta = sessao.getNamedQuery("Cliente.buscarCodigo");
+			Query consulta = sessao.getNamedQuery("Orcamento.BuscarCodigo");
 			consulta.setLong("codigo", codigo);
 
-			clientes = (Clientes) consulta.uniqueResult();
+			orcamento = (Orcamento) consulta.uniqueResult();
 
 		} catch (RuntimeException ex) {
 			throw ex;
 		} finally {
 			sessao.close();
 		}
-		return clientes;
+		return orcamento;
 
 	}
 

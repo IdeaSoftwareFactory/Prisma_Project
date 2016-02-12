@@ -10,10 +10,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "Orcamento")
+@NamedQueries({
+	@NamedQuery(name = "Orcamento.listar", query = "SELECT orcamento FROM Orcamento orcamento"),
+	@NamedQuery(name = "Orcamento.BuscarCodigo", query = "SELECT orcamento FROM Orcamento orcamento WHERE codigo = :codigo")})
 public class Orcamento {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
